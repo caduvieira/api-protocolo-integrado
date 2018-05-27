@@ -1,0 +1,22 @@
+plugins {
+	id 'org.springframework.boot' version '2.0.2.RELEASE'
+	id 'net.ltgt.apt' version '0.10'
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+// lombok 1.16.20 está com problemas com o java openjdk 10+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok:1.16.20'
+	apt "org.projectlombok:lombok:1.16.20"
+}
