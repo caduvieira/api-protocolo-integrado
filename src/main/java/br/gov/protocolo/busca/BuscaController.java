@@ -3,7 +3,8 @@ package br.gov.protocolo.busca;
 import br.gov.protocolo.model.Documento;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,8 @@ class BuscaController {
        this.buscador = buscador;
     }
 
-    @RequestMapping("/busca")
+    @CrossOrigin
+    @GetMapping("/busca")
     public List<Documento> busca(@RequestParam(required = false) String q,
                                  @RequestParam(required = false, defaultValue = "1") Integer pagina) {
         return buscador.busca(ofNullable(q), pagina -1);
