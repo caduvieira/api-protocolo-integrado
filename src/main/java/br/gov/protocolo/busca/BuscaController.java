@@ -24,7 +24,7 @@ class BuscaController {
     }
 
     @RequestMapping("/busca")
-    public List<Documento> busca(@RequestParam(required = true) String q,
+    public List<Documento> busca(@RequestParam(required = false) String q,
                                  @RequestParam(required = false, defaultValue = "1") Integer pagina) {
         return buscador.busca(ofNullable(q), pagina -1);
     }
