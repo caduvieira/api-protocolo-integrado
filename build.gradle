@@ -22,3 +22,11 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok:1.16.20'
 	apt "org.projectlombok:lombok:1.16.20"
 }
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:deprecation"
+        }
+    }
+}

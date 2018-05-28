@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
-import org.springframework.data.elasticsearch.core.FacetedPageImpl;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Component;
 
@@ -61,7 +60,7 @@ public class BuscadorConteudo {
     private Page<Documento> executaQuery(Optional<String> termoBuscado, Integer paginaAtual,
                                               Integer quantidadeDeResultados, Function<String, QueryBuilder> criaQuery) {
         String termo = termoBuscado.orElse("");
-        PageRequest pageable = new PageRequest(paginaAtual, quantidadeDeResultados);
+        PageRequest pageable = PageRequest.of(paginaAtual, quantidadeDeResultados);
 
         return buscaRepository.findByAssuntoLike(termo, pageable);
     }
