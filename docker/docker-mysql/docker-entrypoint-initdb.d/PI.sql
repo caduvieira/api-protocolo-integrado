@@ -127,7 +127,6 @@ CREATE TABLE IF NOT EXISTS `Documento` (
   PRIMARY KEY (`codPD`))
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `Consulta`
 -- -----------------------------------------------------
@@ -536,4 +535,14 @@ INSERT INTO `SituacaoUP` (`codSituacao`, `descSituacao`) VALUES (1, 'ativa');
 INSERT INTO `SituacaoUP` (`codSituacao`, `descSituacao`) VALUES (2, 'desativada');
 INSERT INTO `SituacaoUP` (`codSituacao`, `descSituacao`) VALUES (3, 'pendente');
 
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `Documento`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mydb`;
+INSERT INTO `Documento` (`codPD`, `nup`, `indicadorDocumento`, `numeroOrigemProtocolo`, `orgaoOrigem`, `unidadeOrigem`, `especieTipoDocumental`, `assunto`, `dataUltimaAtualizacao`) VALUES (1, 'nup 1', '1', 'numeroOrigiemProtocolo1', 1, 1, 'especieTipoDocumental1', 'requisição de servidor', NOW());
+INSERT INTO `Documento` (`codPD`, `nup`, `indicadorDocumento`, `numeroOrigemProtocolo`, `orgaoOrigem`, `unidadeOrigem`, `especieTipoDocumental`, `assunto`, `dataUltimaAtualizacao`) VALUES (2, 'nup 2', '1', 'numeroOrigiemProtocolo1', 2, 2, 'especieTipoDocumental2', 'PAD no servidor', NOW());
+INSERT INTO `Documento` (`codPD`, `nup`, `indicadorDocumento`, `numeroOrigemProtocolo`, `orgaoOrigem`, `unidadeOrigem`, `especieTipoDocumental`, `assunto`, `dataUltimaAtualizacao`) VALUES (3, 'nup 3', '3', 'numeroOrigiemProtocolo1', 3, 3, 'especieTipoDocumental3', 'prestação de serviço', NOW());
 COMMIT;

@@ -17,6 +17,7 @@ targetCompatibility = 1.8
 
 dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile 'org.springframework.data:spring-data-elasticsearch:3.0.7.RELEASE'
 	compileOnly 'org.projectlombok:lombok:1.16.20'
 	apt "org.projectlombok:lombok:1.16.20"
 }
