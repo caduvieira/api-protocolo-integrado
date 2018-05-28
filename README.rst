@@ -5,7 +5,7 @@ Para executar:
 
 .. code-block:: console
 
-   $ cd docker && docker-compose up -d
+   $ docker-compose -f docker/docker-compose.yml up -d
    $ ./gradlew clean bootRun
 
 Em seguida acesse http://localhost:8080/busca?q=serv&pagina=2
