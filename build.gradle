@@ -10,9 +10,8 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-// lombok 1.16.20 está com problemas com o java openjdk 10+
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.10
+targetCompatibility = 1.10
 
 dependencies {
   annotationProcessor 'org.projectlombok:lombok:1.16.22'
