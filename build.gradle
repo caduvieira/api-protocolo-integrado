@@ -1,6 +1,5 @@
 plugins {
 	id 'org.springframework.boot' version '2.0.2.RELEASE'
-	id 'net.ltgt.apt' version '0.10'
 }
 
 repositories {
@@ -16,11 +15,11 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+  annotationProcessor 'org.projectlombok:lombok:1.16.22'
+	compileOnly 'org.projectlombok:lombok:1.16.22'
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.data:spring-data-elasticsearch:3.0.7.RELEASE'
 	compile 'org.springframework.boot:spring-boot-starter-security'
-	compileOnly 'org.projectlombok:lombok:1.16.20'
-	apt "org.projectlombok:lombok:1.16.20"
 }
 
 allprojects {

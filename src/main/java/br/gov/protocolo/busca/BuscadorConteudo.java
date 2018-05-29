@@ -2,6 +2,7 @@ package br.gov.protocolo.busca;
 
 
 import br.gov.protocolo.model.Documento;
+import br.gov.protocolo.model.Resultado;
 import lombok.experimental.FieldDefaults;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.search.SearchHitField;
@@ -39,18 +40,19 @@ public class BuscadorConteudo {
         this.buscaRepository = buscaRepository;
     }
 
-    public List<Documento> busca(Optional<String> termoBuscado, Integer paginaAtual) {
-        return executaQuery(termoBuscado, paginaAtual, q -> boolQuery()
-                .must(multiMatchQuery(q, "nup", "numeroOrigemProtocolo", "assunto")
-                        .prefixLength(0))
-                .should(matchQuery("nup", q)
-                        .boost(10))
-                .should(matchQuery("assunto", q)
-                        .boost(9))).getContent();
+    public Resultado busca(Optional<String> termoBuscado, Integer paginaAtual) {
+        Page<Documento> resultados = executaQuery(termoBuscado, paginaAtual, q -> boolQuery()
+              .must(multiMatchQuery(q, "nup", "numeroOrigemProtocolo", "assunto")
+                      .prefixLength(0))
+              .should(matchQuery("nup", q)
+                      .boost(10))
+              .should(matchQuery("assunto", q)
+                      .boost(9)));
+        return new Resultado(resultados.getTotalElements(),resultados.getTotalPages(),paginaAtual +1,resultados.getContent());
     }
 
-    private List<Documento> executaQuery(Optional<String> termoBuscado, Function<String, QueryBuilder> criaQuery) {
-        return executaQuery(termoBuscado, 0, MAX_VALUE, criaQuery).getContent();
+    private Page<Documento> executaQuery(Optional<String> termoBuscado, Function<String, QueryBuilder> criaQuery) {
+        return executaQuery(termoBuscado, 0, MAX_VALUE, criaQuery);
     }
 
     private Page<Documento> executaQuery(Optional<String> termoBuscado, Integer paginaAtual, Function<String, QueryBuilder> criaQuery) {
