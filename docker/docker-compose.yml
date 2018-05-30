@@ -15,6 +15,7 @@ services:
     ports:
       - 9200:9200
       - 9300:9300
+
   mysql:
     build: docker-mysql
     environment:
@@ -24,7 +25,6 @@ services:
     ports:
       - 3306:3306
 
-
   logstash:
     container_name: 'logstash'
     build: 'logstash'
@@ -32,6 +32,16 @@ services:
       - 'elasticsearch'
       - 'mysql'
 
+  app:
+    container_name: 'api-protocolo-integrado'
+    build: 'app'
+    restart: 'always'
+    environment:
+      JAVA_OPTS: '-Dfile.encoding=UTF-8 -Xms256M -Xmx1G -Djava.awt.headless=true -XX:+UseG1GC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -XX:+HeapDumpOnOutOfMemoryError -XX:+DisableExplicitGC'
+    ports:
+      - 80:8080
+    links:
+      - 'elasticsearch'
 
 volumes:
   esdata1:
