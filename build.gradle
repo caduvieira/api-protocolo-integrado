@@ -28,3 +28,11 @@ allprojects {
         }
     }
 }
+
+task copyJar(type: Copy) {
+    from("${buildDir}/libs")
+    into('docker/app')
+    include('*.jar')
+}
+
+assemble.finalizedBy copyJar
