@@ -2,11 +2,17 @@ package br.gov.protocolo.fixtures;
 
 import br.gov.protocolo.model.Documento;
 import br.gov.protocolo.model.Resultado;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+
 
 import java.util.List;
 
+import static br.gov.protocolo.busca.BuscadorConteudo.PAGE_SIZE;
 import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableList;
+
 
 public class TestData {
 
@@ -29,4 +35,16 @@ public class TestData {
                 DOCUMENTO1,
                 DOCUMENTO2
               )));
+
+    public static final Page<Documento> PAGE_DOCUMENTO = new PageImpl<Documento>(
+              asList(
+                DOCUMENTO1,
+                DOCUMENTO2
+              ),
+              PageRequest.of(0, PAGE_SIZE),
+              asList(
+                DOCUMENTO1,
+                DOCUMENTO2
+              ).size()
+    );
 }

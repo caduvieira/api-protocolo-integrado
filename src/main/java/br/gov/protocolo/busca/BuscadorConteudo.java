@@ -7,7 +7,6 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,14 +18,12 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 public class BuscadorConteudo {
 
-    private static final int PAGE_SIZE = 2;
+    public static final int PAGE_SIZE = 2;
 
-    ElasticsearchTemplate et;
     BuscaRepository buscaRepository;
 
     @Autowired
-    BuscadorConteudo(ElasticsearchTemplate et, BuscaRepository buscaRepository) {
-        this.et = et;
+    BuscadorConteudo(BuscaRepository buscaRepository) {
         this.buscaRepository = buscaRepository;
     }
 
