@@ -1,5 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.0.2.RELEASE'
+  id 'jacoco'
+  id 'com.github.kt3k.coveralls' version '2.6.3'
 }
 
 repositories {
@@ -9,10 +11,9 @@ repositories {
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'jacoco'
 
-sourceCompatibility = 1.10
-targetCompatibility = 1.10
+sourceCompatibility = 1.9
+targetCompatibility = 1.9
 
 dependencies {
   annotationProcessor 'org.projectlombok:lombok:1.16.22'
@@ -39,3 +40,10 @@ task copyJar(type: Copy) {
 }
 
 assemble.finalizedBy copyJar
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
+}

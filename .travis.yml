@@ -1,0 +1,10 @@
+language: java
+
+jdk:
+  - oraclejdk9
+
+script:
+  - ./gradlew clean check assemble
+
+after_success:
+  - ./gradlew jacocoTestReport coveralls
