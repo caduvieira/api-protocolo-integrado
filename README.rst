@@ -1,6 +1,10 @@
 API - Protocolo Integrado
 **************************
 
+.. image:: https://coveralls.io/repos/github/caduvieira/api-protocolo-integrado/badge.svg?branch=master
+:target: https://coveralls.io/github/caduvieira/api-protocolo-integrado?branch=master
+
+
 Para executar localmente:
 
 .. code-block:: console
