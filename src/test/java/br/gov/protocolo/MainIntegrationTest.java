@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Main.class)
+@SpringBootTest(classes = Main.class, properties="spring.data.elasticsearch.cluster-nodes=localhost:9300")
 public class MainIntegrationTest {
 
     @Test
