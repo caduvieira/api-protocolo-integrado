@@ -2,9 +2,10 @@ package br.gov.protocolo.busca;
 
 import br.gov.protocolo.model.Resultado;
 import lombok.experimental.FieldDefaults;
+import net.rossillo.spring.web.mvc.CacheControl;
+import net.rossillo.spring.web.mvc.CachePolicy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,8 +25,8 @@ class BuscaController {
        this.buscador = buscador;
     }
 
-    @CrossOrigin
-    @GetMapping("/busca")
+    @CacheControl(maxAge=31556926, policy = { CachePolicy.MUST_REVALIDATE })
+    @RequestMapping("/busca")
     public Resultado busca(@RequestParam(required = false) String q,
                                  @RequestParam(required = false, defaultValue = "1") Integer pagina) {
         return buscador.busca(ofNullable(q), pagina -1);
